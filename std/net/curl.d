@@ -97,13 +97,13 @@ Example:
 import std.net.curl, std.stdio;
 
 // Return a string containing the content specified by an URL
-string content = get("dlang.org");
+auto content = get("dlang.org");
 
 // Post data and return a string containing the content specified by an URL
-string content = post("mydomain.com/here.cgi", "post data");
+auto content = post("mydomain.com/here.cgi", "post data");
 
 // Get content of file from ftp server
-string content = get("ftp.digitalmars.com/sieve.ds");
+auto content = get("ftp.digitalmars.com/sieve.ds");
 
 // Post and print out content line by line. The request is done in another thread.
 foreach (line; byLineAsync("dlang.org", "Post data"))
@@ -243,7 +243,7 @@ CALLBACK_PARAMS = $(TABLE ,
   * ---
   * import std.net.curl;
   * // Two requests below will do the same.
-  * string content;
+  * char[] content;
   *
   * // Explicit connection provided
   * content = get!HTTP("dlang.org");
@@ -385,7 +385,7 @@ unittest
  * Example:
  * ----
  * import std.net.curl;
- * string content = get("d-lang.appspot.com/testUrl2");
+ * auto content = get("d-lang.appspot.com/testUrl2");
  * ----
  *
  * Returns:
@@ -454,7 +454,7 @@ unittest
  * Example:
  * ----
  * import std.net.curl;
- * string content = post("d-lang.appspot.com/testUrl2", [1,2,3,4]);
+ * auto content = post("d-lang.appspot.com/testUrl2", [1,2,3,4]);
  * ----
  *
  * Returns:
@@ -517,7 +517,7 @@ unittest
  * Example:
  * ----
  * import std.net.curl;
- * string content = put("d-lang.appspot.com/testUrl2",
+ * auto content = put("d-lang.appspot.com/testUrl2",
  *                      "Putting this data");
  * ----
  *
@@ -2532,7 +2532,7 @@ struct HTTP
      * import std.net.curl;
      * auto client = HTTP();
      * client.addRequestHeader("X-Custom-ABC", "This is the custom value");
-     * string content = get("dlang.org", client);
+     * auto content = get("dlang.org", client);
      * ---
      */
     void addRequestHeader(const(char)[] name, const(char)[] value)
